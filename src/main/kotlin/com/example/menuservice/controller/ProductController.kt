@@ -30,9 +30,13 @@ internal class ProductController(repository: ProductRepo) {
     }
 
     @PutMapping("/products/{id}")
-    fun replaceEmployee(@RequestBody newProduct: Product, @PathVariable id: Int): Product {
+    fun replaceProduct(@RequestBody newProduct: Product, @PathVariable id: Int): Product {
         return repository.findById(id)
                 .map { product ->
+                    product.name = newProduct.name
+                    product.description = newProduct.description
+                    product.allergies = newProduct.allergies
+                    product.price = newProduct.price
                     repository.save(product)
                 }
                 .orElseGet {
