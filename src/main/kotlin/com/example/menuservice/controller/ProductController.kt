@@ -5,7 +5,7 @@ import com.example.menuservice.repo.ProductRepo
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
-
+@CrossOrigin(origins = arrayOf("http://localhost:3000"))
 @RestController
 internal class ProductController(repository: ProductRepo) {
     private val repository: ProductRepo

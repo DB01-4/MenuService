@@ -5,6 +5,7 @@ import com.example.menuservice.repo.CategoryRepo
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
+@CrossOrigin(origins = arrayOf("http://localhost:3000"))
 @RestController
 internal class CategoryController(repository: CategoryRepo) {
     private val repo: CategoryRepo

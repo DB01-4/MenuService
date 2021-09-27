@@ -1,9 +1,7 @@
 package com.example.menuservice.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
+
 
 @Entity
 class Product {
@@ -14,6 +12,11 @@ class Product {
     var description: String? = null
     var allergies: String? = null
     var price: Int? = null
+
+    @OneToOne(cascade = arrayOf(CascadeType.ALL))
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private val categoryId: Category? = null
+
 
     constructor(id: Int?, name: String?, description: String?, allergies: String?, price: Int?) {
         this.id = id
