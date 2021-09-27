@@ -1,9 +1,6 @@
 package com.example.menuservice.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Category {
@@ -12,4 +9,8 @@ class Category {
     var id: Int? = null
     var name: String? = null
     var description: String? = null
+
+    @OneToMany
+    @JoinColumn(name = "category_id")
+    private val products: List<Product>? = null
 }

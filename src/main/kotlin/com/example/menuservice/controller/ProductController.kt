@@ -5,7 +5,8 @@ import com.example.menuservice.repo.ProductRepo
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
-@CrossOrigin(origins = arrayOf("http://localhost:3000"))
+
+@CrossOrigin(origins = ["http://localhost:3000"])
 @RestController
 internal class ProductController(repository: ProductRepo) {
     private val repository: ProductRepo
@@ -15,6 +16,11 @@ internal class ProductController(repository: ProductRepo) {
     @GetMapping("/products")
     fun all(): List<Product> {
         return repository.findAll()
+    }
+
+    @GetMapping("/products/category/{id}")
+    fun getByCategoryId(@PathVariable id: Int): List<Product> {
+        return repository.findByCategoryId(id)
     }
 
     // end::get-aggregate-root[]
