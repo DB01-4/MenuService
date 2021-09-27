@@ -9,53 +9,49 @@ import java.util.*
 @CrossOrigin(origins = ["http://localhost:3000"])
 @RestController
 internal class ProductController(repository: ProductRepo) {
-    private val repository: ProductRepo
+    private val repo: ProductRepo
 
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/products")
     fun all(): List<Product> {
-        return repository.findAll()
+        return repo.findAll()
     }
 
     @GetMapping("/products/category/{id}")
     fun getByCategoryId(@PathVariable id: Int): List<Product> {
-        return repository.findByCategoryId(id)
+        return repo.findByCategoryId(id)
     }
 
-    // end::get-aggregate-root[]
     @PostMapping("/products")
-    fun newEmployee(@RequestBody newProduct: Product): Product {
-        return repository.save(newProduct)
+    fun newProduct(@RequestBody newProduct: Product): Product {
+        return repo.save(newProduct)
     }
 
-    // Single item
     @GetMapping("/products/{id}")
     fun one(@PathVariable id: Int): Optional<Product> {
-        return repository.findById(id)
+        return repo.findById(id)
     }
 
     @PutMapping("/products/{id}")
     fun replaceProduct(@RequestBody newProduct: Product, @PathVariable id: Int): Product {
-        return repository.findById(id)
+        return repo.findById(id)
                 .map { product ->
                     product.name = newProduct.name
                     product.description = newProduct.description
                     product.allergies = newProduct.allergies
                     product.price = newProduct.price
-                    repository.save(product)
+                    repo.save(product)
                 }
                 .orElseGet {
-                    repository.save(newProduct)
+                    repo.save(newProduct)
                 }
     }
 
     @DeleteMapping("/products/{id}")
-    fun deleteEmployee(@PathVariable id: Int) {
-        repository.deleteById(id)
+    fun deleteProduct(@PathVariable id: Int) {
+        repo.deleteById(id)
     }
 
     init {
-        this.repository = repository
+        this.repo = repository
     }
 }
