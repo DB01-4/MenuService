@@ -13,16 +13,8 @@ class Product {
     var allergies: String? = null
     var price: Int? = null
 
-    @OneToOne(cascade = arrayOf(CascadeType.ALL))
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private val categoryId: Category? = null
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private val category: Category? = null
 
-
-    constructor(id: Int?, name: String?, description: String?, allergies: String?, price: Int?) {
-        this.id = id
-        this.name = name
-        this.description = description
-        this.allergies = allergies
-        this.price = price
-    }
 }
