@@ -33,6 +33,7 @@ internal class CategoryController(repository: CategoryRepo) {
                 .map { category ->
                     category.name = newCategory.name
                     category.description = newCategory.description
+                    category.image = newCategory.image
                     repo.save(category)
                 }
                 .orElseGet {

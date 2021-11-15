@@ -9,6 +9,7 @@ class Category {
     var id: Int? = null
     var name: String? = null
     var description: String? = null
+    var image: String? = null
 
     @OneToMany
     @JoinColumn(name = "category_id")

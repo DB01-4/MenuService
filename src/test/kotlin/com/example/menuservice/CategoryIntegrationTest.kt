@@ -33,10 +33,12 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
         categoryPutObject = JSONObject()
         categoryPutObject["name"] = "Doe"
         categoryPutObject["description"] = "John"
+        categoryPutObject["image"] = "newImage"
 
         categoryPostObject = JSONObject()
         categoryPostObject["name"] = "John"
         categoryPostObject["description"] = "Doe"
+        categoryPostObject["image"] = "image"
     }
 
     @Test
@@ -60,6 +62,7 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
         Assertions.assertNotNull(category.description)
         Assertions.assertEquals(categoryPostObject["name"], category.name)
         Assertions.assertEquals(categoryPostObject["description"], category.description)
+        Assertions.assertEquals(categoryPostObject["image"], category.image)
 
         testRestTemplate.delete(categoryUrl+categoryId.toString())
 
@@ -86,6 +89,7 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
 
         Assertions.assertEquals(categoryPutObject["name"], category.name)
         Assertions.assertEquals(categoryPutObject["description"], category.description)
+        Assertions.assertEquals(categoryPutObject["image"], category.image)
 
         testRestTemplate.delete(categoryUrl+categoryId.toString())
     }
