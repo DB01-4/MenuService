@@ -39,6 +39,8 @@ internal class ProductController(repository: ProductRepo) {
                     product.description = newProduct.description
                     product.allergies = newProduct.allergies
                     product.price = newProduct.price
+                    product.category = newProduct.category
+                    product.image = newProduct.image
                     repo.save(product)
                 }
                 .orElseGet {

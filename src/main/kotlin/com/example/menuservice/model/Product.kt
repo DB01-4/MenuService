@@ -12,9 +12,10 @@ class Product {
     var description: String? = null
     var allergies: String? = null
     var price: Int? = null
+    var image: String? = null
 
     @ManyToOne
-    @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private val category: Category? = null
+    @JoinColumn(name = "category_id", insertable = true, updatable = true)
+    var category: Category? = null
 
 }
