@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class CategoryService(private val categoryRepo: CategoryRepo) {
+    
     //post product
     fun saveCategory(category: Category): Category? {
         return categoryRepo.save(category)

@@ -1,59 +1,51 @@
 package com.example.menuservice.controller
 
+import com.example.menuservice.model.Category
 import com.example.menuservice.model.Product
 import com.example.menuservice.repo.ProductRepo
+import com.example.menuservice.service.ProductService
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
 
 @CrossOrigin(origins = ["http://localhost:3000"])
 @RestController
-internal class ProductController(repository: ProductRepo) {
-    private val repo: ProductRepo
+internal class ProductController(service: ProductService) {
+
+    private val service: ProductService
+
 
     @GetMapping("/products")
     fun all(): List<Product> {
-        return repo.findAll()
+        return service.products
     }
 
     @GetMapping("/products/category/{id}")
     fun getByCategoryId(@PathVariable id: Int): List<Product> {
-        return repo.findByCategoryId(id)
+        return service.findByCategoryId(id)
     }
 
     @PostMapping("/products")
     fun newProduct(@RequestBody newProduct: Product): Product {
-        return repo.save(newProduct)
+        return service.saveProduct(newProduct)
     }
 
     @GetMapping("/products/{id}")
-    fun one(@PathVariable id: Int): Optional<Product> {
-        return repo.findById(id)
+    fun one(@PathVariable id: Int): Product? {
+        return service.getProductById(id)
     }
 
     @PutMapping("/products/{id}")
     fun replaceProduct(@RequestBody newProduct: Product, @PathVariable id: Int): Product {
-        return repo.findById(id)
-                .map { product ->
-                    product.name = newProduct.name
-                    product.description = newProduct.description
-                    product.allergies = newProduct.allergies
-                    product.price = newProduct.price
-                    product.category = newProduct.category
-                    product.image = newProduct.image
-                    repo.save(product)
-                }
-                .orElseGet {
-                    repo.save(newProduct)
-                }
+        return service.updateProduct(newProduct)
     }
 
     @DeleteMapping("/products/{id}")
     fun deleteProduct(@PathVariable id: Int) {
-        repo.deleteById(id)
+        service.deleteProduct(id)
     }
 
     init {
-        this.repo = repository
+        this.service = service
     }
 }

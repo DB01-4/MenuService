@@ -31,6 +31,11 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
+    //find products by category id
+    public List<Product> findByCategoryId(int id) {
+        return productRepository.findByCategoryId(id);
+    }
+
     //delete product
     public String deleteProduct(int id) {
         productRepository.deleteById(id);
@@ -41,8 +46,10 @@ public class ProductService {
     public Product updateProduct(Product product) {
         Product existingProduct=productRepository.findById(product.getId()).orElse(null);
         existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setAllergies(product.getAllergies());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setImage(product.getImage());
         return productRepository.save(existingProduct);
     }
-
-
 }
