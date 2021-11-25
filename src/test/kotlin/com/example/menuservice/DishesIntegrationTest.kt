@@ -87,9 +87,9 @@ class DishesIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate) {
 
         val product: Product = testRestTemplate.getForObject(getProductUrl+productId.toString(), Product::class.java)
 
-        Assertions.assertEquals(productPutObject["name"], product.name)
-        Assertions.assertEquals(productPutObject["description"], product.description)
-        Assertions.assertEquals(productPutObject["image"], product.image)
+        Assertions.assertEquals(productPostObject["name"], product.name)
+        Assertions.assertEquals(productPostObject["description"], product.description)
+        Assertions.assertEquals(productPostObject["image"], product.image)
 
         testRestTemplate.delete(productUrl+productId.toString())
     }

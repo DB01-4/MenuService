@@ -87,9 +87,9 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
 
         val category: Category = testRestTemplate.getForObject(getCategoryUrl+categoryId.toString(), Category::class.java)
 
-        Assertions.assertEquals(categoryPutObject["name"], category.name)
-        Assertions.assertEquals(categoryPutObject["description"], category.description)
-        Assertions.assertEquals(categoryPutObject["image"], category.image)
+        Assertions.assertEquals(categoryPostObject["name"], category.name)
+        Assertions.assertEquals(categoryPostObject["description"], category.description)
+        Assertions.assertEquals(categoryPostObject["image"], category.image)
 
         testRestTemplate.delete(categoryUrl+categoryId.toString())
     }
