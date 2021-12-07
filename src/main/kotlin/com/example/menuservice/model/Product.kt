@@ -11,6 +11,7 @@ class Product {
     var name: String? = null
     var description: String? = null
     var allergies: String? = null
+    var nutrition: String? = null
     var price: Int? = null
     var image: String? = null
 
