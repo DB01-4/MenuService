@@ -7,6 +7,7 @@ import com.example.menuservice.service.ProductService
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
+
 @CrossOrigin(origins = ["http://localhost:3000"])
 @RestController
 internal class CategoryController(service: CategoryService) {
