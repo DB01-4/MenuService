@@ -7,8 +7,8 @@ import com.example.menuservice.service.ProductService
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
-
-@CrossOrigin(origins = ["http://localhost:3000"])
+@RequestMapping(path = ["api/private"])
+@CrossOrigin(origins = ["*"])
 @RestController
 internal class CategoryController(service: CategoryService) {
     private val service: CategoryService
