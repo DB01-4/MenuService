@@ -1,14 +1,12 @@
 package com.example.menuservice.controller
 
-import com.example.menuservice.model.Category
 import com.example.menuservice.model.Product
-import com.example.menuservice.repo.ProductRepo
 import com.example.menuservice.service.ProductService
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 
-@CrossOrigin(origins = ["http://localhost:3000"])
+@RequestMapping(path = ["api/private"])
+@CrossOrigin(origins = ["*"])
 @RestController
 internal class ProductController(service: ProductService) {
 
