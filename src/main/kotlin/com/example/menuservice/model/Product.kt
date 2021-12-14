@@ -14,6 +14,7 @@ class Product {
     var nutrition: String? = null
     var price: Int? = null
     var image: String? = null
+    var inStock: Boolean? = null
 
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = true, updatable = true)
