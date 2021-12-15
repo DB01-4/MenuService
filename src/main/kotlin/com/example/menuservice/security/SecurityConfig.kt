@@ -1,48 +1,43 @@
-package com.example.menuservice.security;
+package com.example.menuservice.security
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
-import org.springframework.security.oauth2.core.OAuth2TokenValidator;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
-import org.springframework.security.oauth2.jwt.JwtValidators;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.oauth2.core.OAuth2TokenValidator
+import com.example.menuservice.security.AudienceValidator
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator
+import kotlin.Throws
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.oauth2.jwt.*
+import java.lang.Exception
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+class SecurityConfig : WebSecurityConfigurerAdapter() {
+    @Value("\${auth0.audience}")
+    private val audience: String? = null
 
-    @Value("${auth0.audience}")
-    private String audience;
-
-    @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
-    private String issuer;
-
+    @Value("\${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
+    private val issuer: String? = null
     @Bean
-    JwtDecoder jwtDecoder() {
-        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
-                JwtDecoders.fromOidcIssuerLocation(issuer);
-
-        OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(audience);
-        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
-        OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator);
-
-        jwtDecoder.setJwtValidator(withAudience);
-
-        return jwtDecoder;
+    fun jwtDecoder(): JwtDecoder {
+        val jwtDecoder = JwtDecoders.fromOidcIssuerLocation<JwtDecoder>(issuer) as NimbusJwtDecoder
+        val audienceValidator: OAuth2TokenValidator<Jwt> = AudienceValidator(
+            audience!!
+        )
+        val withIssuer = JwtValidators.createDefaultWithIssuer(issuer)
+        val withAudience: OAuth2TokenValidator<Jwt> = DelegatingOAuth2TokenValidator(withIssuer, audienceValidator)
+        jwtDecoder.setJwtValidator(withAudience)
+        return jwtDecoder
     }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
+    @Throws(Exception::class)
+    public override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-                .mvcMatchers("/api/public").permitAll()
-                .mvcMatchers("/api/private/**").authenticated()
-                .mvcMatchers("/api/private-scoped").hasAuthority("Message")
-                .and().cors()
-                .and().oauth2ResourceServer().jwt();
+            .mvcMatchers("/api/public").permitAll()
+            .mvcMatchers("/api/private/**").authenticated()
+            .mvcMatchers("/api/private-scoped").hasAuthority("Message")
+            .and().cors()
+            .and().oauth2ResourceServer().jwt()
     }
 }

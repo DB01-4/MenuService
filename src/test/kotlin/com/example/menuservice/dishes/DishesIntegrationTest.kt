@@ -1,4 +1,5 @@
-package com.example.menuservice
+/*
+package com.example.menuservice.dishes
 
 import com.example.menuservice.model.Product
 import net.minidev.json.JSONObject
@@ -103,3 +104,4 @@ class DishesIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate) {
         Assertions.assertEquals(result.statusCode, HttpStatus.OK)
     }
 }
+*/
