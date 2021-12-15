@@ -1,4 +1,5 @@
-package com.example.menuservice
+/*
+package com.example.menuservice.category
 
 import com.example.menuservice.model.Category
 import net.minidev.json.JSONObject
@@ -24,7 +25,7 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
     var categoryId: Int? = null
 
     @BeforeAll
-    fun setup () {
+    fun setup() {
         getCategoryUrl = "/categories/"
         categoryUrl = "/categories/"
         headers = HttpHeaders()
@@ -43,7 +44,7 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
 
     @Test
     fun testCategoryControllerGetById() {
-        val result = testRestTemplate.getForEntity(getCategoryUrl+"1", Category::class.java)
+        val result = testRestTemplate.getForEntity(getCategoryUrl + "1", Category::class.java)
         Assertions.assertNotNull(result)
         Assertions.assertEquals(result.statusCode, HttpStatus.OK)
     }
@@ -64,7 +65,7 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
         Assertions.assertEquals(categoryPostObject["description"], category.description)
         Assertions.assertEquals(categoryPostObject["image"], category.image)
 
-        testRestTemplate.delete(categoryUrl+categoryId.toString())
+        testRestTemplate.delete(categoryUrl + categoryId.toString())
 
     }
 
@@ -81,26 +82,27 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
 
         request = HttpEntity<String>(categoryPutObject.toString(), headers)
 
-        val result = testRestTemplate.put(categoryUrl+categoryId.toString(), request)
+        val result = testRestTemplate.put(categoryUrl + categoryId.toString(), request)
 
         Assertions.assertNotNull(result)
 
-        val category: Category = testRestTemplate.getForObject(getCategoryUrl+categoryId.toString(), Category::class.java)
+        val category: Category =
+            testRestTemplate.getForObject(getCategoryUrl + categoryId.toString(), Category::class.java)
 
         Assertions.assertEquals(categoryPostObject["name"], category.name)
         Assertions.assertEquals(categoryPostObject["description"], category.description)
         Assertions.assertEquals(categoryPostObject["image"], category.image)
 
-        testRestTemplate.delete(categoryUrl+categoryId.toString())
+        testRestTemplate.delete(categoryUrl + categoryId.toString())
     }
 
     @Test
     fun testCategoryControllerDelete() {
         // testRestTemplate.delete(categoryUrl+categoryId.toString())
 
-        val result = testRestTemplate.getForEntity(getCategoryUrl+"10", Category::class.java)
+        val result = testRestTemplate.getForEntity(getCategoryUrl + "10", Category::class.java)
         Assertions.assertNotNull(result)
         Assertions.assertEquals(result.statusCode, HttpStatus.OK)
     }
-
 }
+*/
