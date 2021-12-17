@@ -5,7 +5,7 @@ import com.example.menuservice.service.ProductService
 import org.springframework.web.bind.annotation.*
 
 
-@RequestMapping(path = ["api/private"])
+@RequestMapping(path = ["api"])
 @CrossOrigin(origins = ["*"])
 @RestController
 internal class ProductController(service: ProductService) {
