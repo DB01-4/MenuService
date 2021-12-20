@@ -33,6 +33,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Throws(Exception::class)
     public override fun configure(http: HttpSecurity) {
+        http.cors().and().csrf().disable();
         http.authorizeRequests()
             .mvcMatchers("/api/public").permitAll()
             .mvcMatchers("/api/private/**").authenticated()
