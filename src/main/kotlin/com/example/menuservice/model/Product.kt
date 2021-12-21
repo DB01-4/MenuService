@@ -16,7 +16,7 @@ class Product {
     @Column(precision=10, scale=2)
     var price: Double? = null
     var image: String? = null
-    var inStock: Boolean? = null
+    var inStock: Boolean? = false
 
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = true, updatable = true)
