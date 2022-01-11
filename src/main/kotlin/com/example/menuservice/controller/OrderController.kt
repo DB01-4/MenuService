@@ -21,7 +21,7 @@ internal class OrderController(service: OrderService) {
         return service.getOrderById(id)
     }
 
-    @GetMapping("/private/orders")
+    @GetMapping("/public/orders")
     fun all(): List<Order> {
         return service.orders
     }
