@@ -17,7 +17,7 @@ internal class BillController (service: BillService) {
         return service.bills
     }
 
-    @PostMapping("private/bill/post")
+    @PostMapping("public/bill/post")
     fun newCategory(@RequestBody newBill: Bill): Bill {
         return service.saveBill(newBill)!!
     }
