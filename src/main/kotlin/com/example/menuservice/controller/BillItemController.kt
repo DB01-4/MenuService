@@ -19,7 +19,7 @@ internal class BillItemController (service: BillItemService) {
         return service.billItems
     }
 
-    @PostMapping("private/billItem/post")
+    @PostMapping("public/billItem/post")
     fun newCategory(@RequestBody newBillItem: BillItem): BillItem {
         return service.saveBillItem(newBillItem)!!
     }
