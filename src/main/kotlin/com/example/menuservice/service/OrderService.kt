@@ -1,9 +1,6 @@
 package com.example.menuservice.service
 
-import com.example.menuservice.model.Category
 import com.example.menuservice.model.Order
-import com.example.menuservice.model.OrderItem
-import com.example.menuservice.model.Product
 import com.example.menuservice.repo.OrderRepo
 import org.springframework.stereotype.Service
 
