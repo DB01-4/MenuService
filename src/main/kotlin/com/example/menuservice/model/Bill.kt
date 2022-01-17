@@ -7,6 +7,7 @@ class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null
+    var table_id: Int? = null
     var total_price: Int? = null
 
     @OneToMany(cascade = [CascadeType.ALL] ,orphanRemoval = true)
