@@ -1,8 +1,6 @@
 package com.example.menuservice.service
 
-import com.example.menuservice.model.Category
 import com.example.menuservice.model.Order
-import com.example.menuservice.model.OrderItem
 import com.example.menuservice.repo.OrderRepo
 import org.springframework.stereotype.Service
 
@@ -43,6 +41,12 @@ class OrderService(private val orderRepo: OrderRepo) {
         val existingOrder = orderRepo.findById(id!!).orElse(null)
         existingOrder.status = order.status;
         return orderRepo.save(existingOrder);
+    }
+
+
+    //find orders by table id
+    fun findByTableId(id: Int): List<Order> {
+        return orderRepo.findByTableId(id)
     }
 
 }

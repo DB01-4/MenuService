@@ -26,6 +26,10 @@ internal class OrderController(service: OrderService) {
         return service.orders
     }
 
+    @GetMapping("public/orders/table/{id}")
+    fun getByTableId(@PathVariable id: Int): List<Order> {
+        return service.findByTableId(id)
+    }
     @PostMapping("/public/orders")
     fun newEmptyOrder(@RequestBody newOrder: Order): Order {
         return service.saveEmptyOrder(newOrder);
