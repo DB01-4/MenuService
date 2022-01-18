@@ -15,10 +15,8 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
-    var orderTime: java.util.Date? = null
+    @Column(name = "order_time")
+    var orderTime: java.util.Date? = java.sql.Timestamp(System.currentTimeMillis())
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
