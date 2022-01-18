@@ -16,7 +16,7 @@ class Order {
     var tableId: Int? = null
 
     @Column(name="order_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    var orderTime: Date? = null
+    var orderTime: java.util.Date? = null
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
