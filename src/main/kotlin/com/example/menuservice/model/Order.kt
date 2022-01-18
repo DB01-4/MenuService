@@ -15,10 +15,10 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @field:CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "order_time")
-    var orderTime: java.util.Date? = System.currentTimeMillis()
+    @Column(name = "order_time", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    var orderTime: java.util.Date? = null
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
