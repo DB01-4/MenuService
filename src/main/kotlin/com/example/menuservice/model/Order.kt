@@ -15,10 +15,10 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @CreationTimestamp
+    @field:CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_time")
-    var orderTime: Date? = null
+    var orderTime: java.util.Date? = System.currentTimeMillis()
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
