@@ -41,6 +41,8 @@ class ProductService(private val productRepository: ProductRepo) {
         existingProduct.price = product.price
         existingProduct.image = product.image
         existingProduct.inStock = product.inStock
+        existingProduct.category = product.category
+        
         return productRepository.save(existingProduct)
     }
 }
