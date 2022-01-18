@@ -16,17 +16,17 @@ internal class OrderController(service: OrderService) {
     private val service: OrderService
 
 
-    @GetMapping("/public/orders/{id}")
+    @GetMapping("/private/orders/{id}")
     fun one(@PathVariable id: Int): Order? {
         return service.getOrderById(id)
     }
 
-    @GetMapping("/public/orders")
+    @GetMapping("/private/orders")
     fun all(): List<Order> {
         return service.orders
     }
 
-    @GetMapping("public/orders/table/{id}")
+    @GetMapping("private/orders/table/{id}")
     fun getByTableId(@PathVariable id: Int): List<Order> {
         return service.findByTableId(id)
     }
@@ -35,7 +35,7 @@ internal class OrderController(service: OrderService) {
         return service.saveEmptyOrder(newOrder);
     }
 
-    @PutMapping("/public/orders/{id}")
+    @PutMapping("/private/orders/{id}")
     fun updateOrderStatus(@RequestBody order: Order, @PathVariable id: Int): Order {
         return service.updateOrderStatus(order, id)
     }
