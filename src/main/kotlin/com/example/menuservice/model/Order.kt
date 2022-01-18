@@ -16,6 +16,8 @@ class Order {
     var tableId: Int? = null
 
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "order_time")
     var orderTime: Date
 
     @Column(name = "status", nullable = true)
