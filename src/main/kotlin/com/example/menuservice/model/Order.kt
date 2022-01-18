@@ -15,9 +15,7 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "order_time")
+    @Column(name="order_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     var orderTime: Date? = null
 
     @Column(name = "status", nullable = true)
