@@ -15,9 +15,9 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @Column(name = "order_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    var orderTime: java.util.Date? = null
+    @Temporal(value=TemporalType.TIMESTAMP)
+    @Column(name="order_time")
+    var orderTime: Date? = null;
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
