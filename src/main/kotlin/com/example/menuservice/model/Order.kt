@@ -15,8 +15,8 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @field:CreationTimestamp
-    lateinit var createDate: Date
+    @CreationTimestamp
+    var orderTime: Date
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
