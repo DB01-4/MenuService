@@ -15,7 +15,9 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
     var orderTime: java.util.Date? = null
 
     @Column(name = "status", nullable = true)
