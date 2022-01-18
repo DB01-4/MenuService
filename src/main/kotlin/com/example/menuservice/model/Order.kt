@@ -16,6 +16,7 @@ class Order {
     var tableId: Int? = null
 
     @Column(name = "order_time", columnDefinition = "TIMESTAMP" )
+    @Temporal(TemporalType.TIMESTAMP)
     var orderTime: LocalDateTime? = null
 
     @Column(name = "status", nullable = true)
