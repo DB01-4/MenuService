@@ -17,8 +17,8 @@ class Order {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "order_time", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    var orderTime: java.util.Date? = null
+    @Column(name = "order_time")
+    var orderTime: Date? = null
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
