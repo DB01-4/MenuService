@@ -15,10 +15,6 @@ class Order {
     @Column(name = "table_id")
     var tableId: Int? = null
 
-    @Temporal(value=TemporalType.TIMESTAMP)
-    @Column(name="order_time")
-    var orderTime: Date? = null;
-
     @Column(name = "status", nullable = true)
     var status: Int? = null
 
