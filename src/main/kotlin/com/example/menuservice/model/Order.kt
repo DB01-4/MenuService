@@ -18,7 +18,7 @@ class Order {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_time")
-    var orderTime: Date
+    var orderTime: Date? = null
 
     @Column(name = "status", nullable = true)
     var status: Int? = null
